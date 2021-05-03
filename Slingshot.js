@@ -8,6 +8,9 @@ class SlingShot{
         }
         this.pointB = pointB
         this.sling = Constraint.create(options);
+        this.Image1=loadImage("sprites/sling1.png");
+        this.Image2=loadImage("sprites/sling2.png");
+        this.Image3=loadImage("sprites/sling3.png");
         World.add(world, this.sling);
     }
 
@@ -16,11 +19,27 @@ class SlingShot{
     }
 
     display(){
+        image(this.Image1,200,20);
+        image(this.Image2,170,20)
+       
         if(this.sling.bodyA){
             var pointA = this.sling.bodyA.position;
+            push()
             var pointB = this.pointB;
-            strokeWeight(4);
-            line(pointA.x, pointA.y, pointB.x, pointB.y);
+            stroke(48,22,8);
+            if(pointA.x<220){
+             strokeWeight(8);
+            line(pointA.x-20, pointA.y, pointB.x-10, pointB.y);
+            line(pointA.x-20, pointA.y, pointB.x+30, pointB.y);
+            image(this.Image3,pointA.x-25,pointA.y-10,10,30)
+            }
+            else{
+             strokeWeight(5);
+            line(pointA.x+25, pointA.y, pointB.x-10, pointB.y);
+            line(pointA.x+25, pointA.y, pointB.x+30, pointB.y);
+            image(this.Image3,pointA.x+25,pointA.y-10,10,30)   
+            }
+            pop()
         }
     }
     
